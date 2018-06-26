@@ -56,7 +56,8 @@ namespace crnlib
 
       template<typename T> inline T square(T value) { return value * value; }
 
-      inline bool is_power_of_2(uint32 x) { return x && ((x & (x - 1U)) == 0U); }
+//commented out; see comment by next_pow2
+//      inline bool is_power_of_2(uint32 x) { return x && ((x & (x - 1U)) == 0U); }
       inline bool is_power_of_2(uint64 x) { return x && ((x & (x - 1U)) == 0U); }
 
       template<typename T> inline T align_up_value(T x, uint alignment)
@@ -81,6 +82,11 @@ namespace crnlib
       }
 		      
 		// From "Hackers Delight"
+/*
+//Commented out:
+//When provided with size_t it cannot determine
+//if uint32 or uint64 should be used (ambiguity)
+// on amd64 linux (gcc 5.4.0)
       inline uint32 next_pow2(uint32 val)
       {
          val--;
@@ -91,6 +97,7 @@ namespace crnlib
          val |= val >> 1;
          return val + 1;
       }
+*/
 
       inline uint64 next_pow2(uint64 val)
       {
